@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 //However, it was described in a book HeadFirst design patterns, and doesn't seem to be a violation of any principles
 //but still, I would prefer to reflect this logic as a simple composition
 public class AddonDecorator extends Beverage {
+    public static final String DELIMITER = ", ";
     private final Beverage baseBeverage;
     private final Collection<Beverage> beverageAddons;
 
@@ -28,7 +29,8 @@ public class AddonDecorator extends Beverage {
     public String getDescription() {
         String description = baseBeverage.getDescription();
         if (beverageAddons.size() > 0) {
-            description += " with " + beverageAddons.stream().map(Beverage::getDescription).collect(Collectors.joining(","));
+            String firstDelimiter = description.toLowerCase().contains("with") ? DELIMITER : " with ";
+            description += firstDelimiter + beverageAddons.stream().map(Beverage::getDescription).collect(Collectors.joining(DELIMITER));
         }
         return description;
     }

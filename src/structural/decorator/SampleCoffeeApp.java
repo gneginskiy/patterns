@@ -9,5 +9,7 @@ public class SampleCoffeeApp {
                                                                                 .withAddon(new SoyMilk())
                                                                                 .withAddon(new Honey()).build();
         System.out.println(myCustomTastyCoffee);
+        Beverage somethingMoreUnusual = AddonDecorator.getBuilder(myCustomTastyCoffee).withAddon(new Decaf()).build();
+        System.out.println(somethingMoreUnusual);
     }
 }
