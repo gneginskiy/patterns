@@ -21,7 +21,8 @@ public class AddonDecorator extends Beverage {
 
     @Override
     public BigDecimal getCost() {
-        BigDecimal beverageAddonsCost = beverageAddons.stream().reduce(BigDecimal.ZERO, (a, b) -> a.add(b.getCost()), BigDecimal::add);
+        BigDecimal beverageAddonsCost =
+                beverageAddons.stream().reduce(BigDecimal.ZERO, (a, b) -> a.add(b.getCost()), BigDecimal::add);
         return baseBeverage.getCost().add(beverageAddonsCost).setScale(2);
     }
 
